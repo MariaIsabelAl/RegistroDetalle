@@ -206,6 +206,7 @@ namespace RegistroDetalle.UI.Registro
             CargarGrid();
             TelefonoTextBox.Focus();
             TelefonoTextBox.Clear();
+            TipoTextBox.Focus();
             TipoTextBox.Clear();
         }
 
