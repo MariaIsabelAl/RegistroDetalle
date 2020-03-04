@@ -158,6 +158,8 @@ namespace RegistroDetalle.UI.Registro
                MessageBox.Show(IDTextBox.Text, "No se puede eliminar una persona que no existe");
         }
 
+
+
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
             int id;
@@ -170,7 +172,7 @@ namespace RegistroDetalle.UI.Registro
 
             if (persona != null)
             {
-                MessageBox.Show("Persona Encontrada");
+                
                 LlenaCampos(persona);
             }
             else
@@ -185,17 +187,21 @@ namespace RegistroDetalle.UI.Registro
 
             return (persona != null);
         }
-        private void AgregarButton_Click(object sender, RoutedEventArgs e)
+        
+
+       
+            
+
+        private void AgregarButton_Click_1(object sender, RoutedEventArgs e)
         {
             if (CargarDataGrid.ItemsSource != null)
                 this.Detalle = (List<TelefonosDetalle>)CargarDataGrid.ItemsSource;
-            this.Detalle.Add(new TelefonosDetalle(
-                id: 0,
-                IdPersona: Convert.ToInt32(IDTextBox.Text),
-                telefono: TelefonoTextBox.Text,
-                tipoTelefono: TipoTextBox.Text
 
-                )) ;
+            this.Detalle.Add(new TelefonosDetalle {
+                Telefono= TelefonoTextBox.Text,
+                TipoTelefono= TipoTextBox.Text
+
+                });
 
             CargarGrid();
             TelefonoTextBox.Focus();
@@ -203,13 +209,10 @@ namespace RegistroDetalle.UI.Registro
             TipoTextBox.Clear();
         }
 
-        private void RemoverButton_Click(object sender, RoutedEventArgs e)
+        private void RemoverButton_Click_1(object sender, RoutedEventArgs e)
         {
-            /*if(CargarDataGrid.Rows.Count > CargarDataGrid.CurrentRow != null)
-            {
-                Detalle.RemoveAt(CargarDataGrid.CurrentRow.Index);
-                CargarGrid();
-            }*/
+            Detalle.RemoveAt(CargarDataGrid.FrozenColumnCount);
+            CargarGrid();
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegistroDetalle.Migrations
 {
-    public partial class RegistroDetalle : Migration
+    public partial class Detalles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,26 +29,25 @@ namespace RegistroDetalle.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    PersonaId = table.Column<int>(nullable: false),
                     TipoTelefono = table.Column<string>(nullable: true),
                     Telefono = table.Column<string>(nullable: true),
-                    PersonasPersonaId = table.Column<int>(nullable: true)
+                    PersonaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TelefonosDetalle", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TelefonosDetalle_Personas_PersonasPersonaId",
-                        column: x => x.PersonasPersonaId,
+                        name: "FK_TelefonosDetalle_Personas_PersonaId",
+                        column: x => x.PersonaId,
                         principalTable: "Personas",
                         principalColumn: "PersonaId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TelefonosDetalle_PersonasPersonaId",
+                name: "IX_TelefonosDetalle_PersonaId",
                 table: "TelefonosDetalle",
-                column: "PersonasPersonaId");
+                column: "PersonaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

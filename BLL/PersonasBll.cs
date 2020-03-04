@@ -11,6 +11,8 @@ namespace RegistroDetalle.BLL
 {
     public class PersonasBll
     {
+       
+
         public static bool Guardar(Personas persona)//Guardar
         {
             bool paso = false;
@@ -33,7 +35,29 @@ namespace RegistroDetalle.BLL
             return paso;
         }///fin
 
+        public static Personas Buscar(int id)//            buscar por id
+        {
+            Contexto contexto = new Contexto();
+            Personas persona = new Personas();
 
+            try
+            {
+                persona = contexto.Personas.Where(p => p.PersonaId == id)
+                    .Include(x => x.Telefonos)
+                    .SingleOrDefault();
+
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return persona;
+        }//                       fin
         public static bool Modificar(Personas persona)//modificar
         {
             bool paso = false;
@@ -41,13 +65,19 @@ namespace RegistroDetalle.BLL
 
             try
             {
-                var Anterior = contexto.Personas.Find(persona.PersonaId);
+                var Anterior = Buscar(persona.PersonaId);
                 foreach (var item in Anterior.Telefonos)
                 {
                     if (!persona.Telefonos.Exists(d => d.Id == item.Id))
                         contexto.Entry(item).State = EntityState.Deleted;
                 }
 
+                foreach (var item in Anterior.Telefonos)
+                {
+                    
+                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                    contexto.Entry(item).State = estado;
+                }
                 contexto.Entry(persona).State = EntityState.Modified;
                 paso = (contexto.SaveChanges() > 0);
             }
@@ -89,27 +119,7 @@ namespace RegistroDetalle.BLL
         }//                                  fin
 
 
-        public static Personas Buscar(int id)//            buscar por id
-        {
-            Contexto contexto = new Contexto();
-            Personas persona = new Personas();
-
-            try
-            {
-                persona = contexto.Personas.Find(id);
-                persona.Telefonos.Count();
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                contexto.Dispose();
-            }
-
-            return persona;
-        }//                       fin
+        
 
         public static List<Personas> GetList(Expression<Func<Personas, bool>> persona) //               listar
         {

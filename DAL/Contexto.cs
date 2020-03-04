@@ -12,7 +12,7 @@ namespace RegistroDetalle.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@"Data Source= DAL\DATA\RegistroDetalle.db");
+            optionsBuilder.UseSqlite(@"Data Source= DAL\DATA\Detalles.db");
         }
     }
 }

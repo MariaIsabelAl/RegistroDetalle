@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace RegistroDetalle.Entidades
@@ -14,6 +15,7 @@ namespace RegistroDetalle.Entidades
         public string Direccion { get; set; }
         public DateTime FechaNacimiento { get; set; }
 
+        [ForeignKey("PersonaId")]
         public virtual List<TelefonosDetalle> Telefonos { get; set; }
 
         public Personas()

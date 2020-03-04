@@ -25,9 +25,9 @@
         <TextBox x:Name="IDTextBox" HorizontalAlignment="Left" Margin="80,12,0,0" Text=" " TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Height="20" />
         <Label x:Name="TipoLabel" Content="Tipo:" HorizontalAlignment="Left" Height="26" Margin="237,154,0,0" VerticalAlignment="Top" Width="78" FontWeight="Bold"/>
         <TextBox x:Name="TipoTextBox" HorizontalAlignment="Left" Height="21" Margin="280,158,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
-        <Button x:Name="AgregarButton" Content="+" HorizontalAlignment="Left" Height="26" Margin="405,153,0,0" VerticalAlignment="Top" Width="49" FontWeight="Bold" Background="#FF2CD4DC"/>
+        <Button x:Name="AgregarButton" Content="+" HorizontalAlignment="Left" Height="26" Margin="405,153,0,0" VerticalAlignment="Top" Width="49" FontWeight="Bold" Background="#FF2CD4DC" Click="AgregarButton_Click_1"/>
         <DataGrid x:Name="CargarDataGrid" HorizontalAlignment="Center" Height="179" Margin="0,185,0,0" VerticalAlignment="Top" Width="468" FontWeight="Bold"/>
-        <Button x:Name="RemoverButton" Content="Remover" HorizontalAlignment="Left" Height="23" Margin="16,367,0,0" VerticalAlignment="Top" Width="95" FontWeight="Bold" Background="#FFE44141"/>
+        <Button x:Name="RemoverButton" Content="Remover" HorizontalAlignment="Left" Height="23" Margin="16,367,0,0" VerticalAlignment="Top" Width="95" FontWeight="Bold" Background="#FFE44141" Click="RemoverButton_Click_1"/>
         <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="0" Margin="12,150,0,0" VerticalAlignment="Top" Width="3"/>
 
 
