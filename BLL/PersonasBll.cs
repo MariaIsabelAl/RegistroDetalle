@@ -65,19 +65,14 @@ namespace RegistroDetalle.BLL
 
             try
             {
-                var Anterior = Buscar(persona.PersonaId);
-                foreach (var item in Anterior.Telefonos)
-                {
-                    if (!persona.Telefonos.Exists(d => d.Id == item.Id))
-                        contexto.Entry(item).State = EntityState.Deleted;
-                }
-
-                foreach (var item in Anterior.Telefonos)
+                contexto.Database.ExecuteSqlRaw($"Delete FROM TelefonosDetalle Where PersonaId={persona.PersonaId}");
+                foreach (var item in persona.Telefonos)
                 {
                     
-                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
-                    contexto.Entry(item).State = estado;
+                        contexto.Entry(item).State = EntityState.Added;
                 }
+
+               
                 contexto.Entry(persona).State = EntityState.Modified;
                 paso = (contexto.SaveChanges() > 0);
             }
